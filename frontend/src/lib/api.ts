@@ -1,4 +1,4 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://eduvillage-backend-2.onrender.com') + '/api';
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://eduvillage-backend-5.onrender.com') + '/api';
 
 class ApiError extends Error {
   constructor(public status: number, message: string) {
@@ -12,6 +12,7 @@ async function apiRequest(endpoint: string, options: RequestInit = {}): Promise<
   const token = localStorage.getItem('token');
 
   const config: RequestInit = {
+    credentials: 'include', // Important for CORS with cookies
     headers: {
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token}` }),
